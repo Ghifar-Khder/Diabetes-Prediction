@@ -1,0 +1,110 @@
+import pandas as pd
+import numpy as np
+import lightgbm as lgb
+from sklearn.model_selection import GridSearchCV, PredefinedSplit
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+import joblib
+import os
+import time
+
+# Create directory for saved models if it doesn't exist
+os.makedirs('saved-models', exist_ok=True)
+
+# Load and prepare data
+train_df = pd.read_csv('data/data-split/train1.csv')
+val_df = pd.read_csv('data/data-split/train2.csv')
+
+X_train = train_df.drop('Outcome', axis=1)
+y_train = train_df['Outcome']
+X_val = val_df.drop('Outcome', axis=1)
+y_val = val_df['Outcome']
+
+# Combine train and validation for grid search with predefined split
+X_combined = np.vstack((X_train, X_val))
+y_combined = np.hstack((y_train, y_val))
+
+# Create a list where training data indices are -1 and validation data indices are 0
+test_fold = np.array([-1] * len(X_train) + [0] * len(X_val))
+ps = PredefinedSplit(test_fold)
+
+# Define parameter grid for LightGBM
+param_grid = {
+    'num_leaves': [ 25,31,35],
+    'learning_rate': [0.005,0.01,0.02],
+    'n_estimators': [ 200,400],
+    'max_depth': [ 7,9],
+    'min_child_samples': [3,5],
+    'subsample': [0.7, 0.8],
+    'colsample_bytree': [1.0,2],
+    'reg_alpha': [ 1,2],
+    'reg_lambda': [ 1,2]
+}
+
+# Create LightGBM classifier
+lgbm = lgb.LGBMClassifier(random_state=42, verbose=-1)
+
+# Perform grid search with predefined split
+print("Performing hyperparameter optimization for LightGBM...")
+print(f"Testing {np.prod([len(v) for v in param_grid.values()])} parameter combinations...")
+start_time = time.time()
+
+grid_search = GridSearchCV(
+    lgbm, 
+    param_grid, 
+    cv=ps,
+    scoring='accuracy',
+    n_jobs=-1,
+    verbose=2,
+    refit=True
+)
+
+grid_search.fit(X_combined, y_combined)
+
+end_time = time.time()
+print(f"\nLightGBM hyperparameter optimization completed in {end_time - start_time:.2f} seconds")
+
+# Get the best parameters
+best_params = grid_search.best_params_
+print(f"\nBest parameters: {best_params}")
+print(f"Best cross-validation score: {grid_search.best_score_:.4f}")
+
+# Train best model on training data only for proper evaluation
+best_lgbm_train = lgb.LGBMClassifier(random_state=42, verbose=-1, **best_params)
+best_lgbm_train.fit(X_train, y_train)
+
+# Make predictions
+y_train_pred = best_lgbm_train.predict(X_train)
+y_val_pred = best_lgbm_train.predict(X_val)
+
+# Calculate metrics
+train_accuracy = accuracy_score(y_train, y_train_pred)
+train_precision = precision_score(y_train, y_train_pred)
+train_recall = recall_score(y_train, y_train_pred)
+train_f1 = f1_score(y_train, y_train_pred)
+
+val_accuracy = accuracy_score(y_val, y_val_pred)
+val_precision = precision_score(y_val, y_val_pred)
+val_recall = recall_score(y_val, y_val_pred)
+val_f1 = f1_score(y_val, y_val_pred)
+
+# Print evaluation
+print("\n" + "="*60)
+print("LIGHTGBM MODEL PERFORMANCE EVALUATION")
+print("="*60)
+print(f"{'METRIC':<15} {'TRAINING':<12} {'VALIDATION':<12}")
+print(f"{'Accuracy':<15} {train_accuracy*100:<10.2f}% {val_accuracy*100:<10.2f}%")
+print(f"{'Precision':<15} {train_precision*100:<10.2f}% {val_precision*100:<10.2f}%")
+print(f"{'Recall':<15} {train_recall*100:<10.2f}% {val_recall*100:<10.2f}%")
+print(f"{'F1 Score':<15} {train_f1*100:<10.2f}% {val_f1*100:<10.2f}%")
+print("="*60)
+
+# Save the model
+joblib.dump(best_lgbm_train, 'saved-models/LightGBM_model.pkl')
+print("\nLightGBM model training complete. Saved as 'saved-models/LightGBM_model.pkl'")
+
+# Display top 5 parameter combinations
+results = pd.DataFrame(grid_search.cv_results_)
+top_results = results.nlargest(5, 'mean_test_score')
+print("\nTop 5 parameter combinations:")
+for i, (idx, row) in enumerate(top_results.iterrows(), 1):
+    print(f"{i}. Score: {row['mean_test_score']:.4f}, Params: {row['params']}")

@@ -1,0 +1,51 @@
+{
+    "Age": {
+        "Q1": 24.0,
+        "Q3": 40.0,
+        "IQR": 16.0,
+        "lower_bound": 0.0,
+        "upper_bound": 64.0
+    },
+    "BMI": {
+        "Q1": 27.4,
+        "Q3": 36.5,
+        "IQR": 9.100000000000001,
+        "lower_bound": 13.749999999999996,
+        "upper_bound": 50.150000000000006
+    },
+    "BloodPressure": {
+        "Q1": 64.0,
+        "Q3": 80.0,
+        "IQR": 16.0,
+        "lower_bound": 40.0,
+        "upper_bound": 104.0
+    },
+    "Glucose": {
+        "Q1": 99.0,
+        "Q3": 140.5,
+        "IQR": 41.5,
+        "lower_bound": 36.75,
+        "upper_bound": 202.75
+    },
+    "Insulin": {
+        "Q1": 76.0,
+        "Q3": 182.0,
+        "IQR": 106.0,
+        "lower_bound": -83.0,
+        "upper_bound": 341.0
+    },
+    "Pregnancies": {
+        "Q1": 1.0,
+        "Q3": 6.0,
+        "IQR": 5.0,
+        "lower_bound": -6.5,
+        "upper_bound": 13.5
+    },
+    "SkinThickness": {
+        "Q1": 21.0,
+        "Q3": 36.0,
+        "IQR": 15.0,
+        "lower_bound": -1.5,
+        "upper_bound": 58.5
+    }
+}
