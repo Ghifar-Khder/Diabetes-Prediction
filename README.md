@@ -1,4 +1,4 @@
-# Diabetes Prediction with Ensemble Meta-Learning
+# Diabetes Prediction using Stacked Ensemble Learning with a CNN Meta-Learner
 
 ## Overview
 This project implements an advanced ensemble learning system for diabetes prediction using a two-phase **Fuzzy C-Means** enhanced **Artificial Neural Network meta-learner**. The system specializes in handling datasets with significant missing values and combines predictions from multiple base machine learning models - including **Artificial Neural Networks** (**ANN**), **K-Nearest Neighbors** (**KNN**), **LightGBM**, **RBF Kernel SVM** (**RSVM**), and **Linear SVM** - to achieve superior performance on the Pima Indians Diabetes dataset.
