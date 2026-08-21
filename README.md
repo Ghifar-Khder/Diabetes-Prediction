@@ -160,7 +160,7 @@ The interface provides an intuitive way to make predictions using either individ
    - SkinThickness imputation (143 missing in train, 49 in test)
    - Insulin imputation (258 missing in train, 74 in test)
 6. **Feature Scaling**: MinMax scaling applied to all features for model consistency
-
+![Full Diagram](figures/data-analysis/full_diagram.png)
 ### Base Models
 Five diverse base models were trained to handle the complex missing value patterns:
 1. Artificial Neural Network (ANN)
