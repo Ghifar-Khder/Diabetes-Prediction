@@ -1,5 +1,5 @@
 # Diabetes Prediction using Stacked Ensemble Learning with a ANN Meta-Learner
-**DOWNLOAD the data from: data/diabetes.csv** then:
+**DOWNLOAD ready-to-use data from: data/diabetes.csv** then:
 
 [**OPEN THE APP**](https://diabetes-prediction-ghifarkhder.streamlit.app/)
 ## Overview
