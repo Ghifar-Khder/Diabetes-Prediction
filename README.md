@@ -57,6 +57,8 @@ This project implements an advanced ensemble learning system for diabetes predic
 ```
 
 ## Dataset
+* **DATASET LINK:** [Pima Indians Diabetes Dataset](https://www.kaggle.com/datasets/jamaltariqcheema/pima-indians-diabetes-dataset)
+
 The Pima Indians Diabetes Dataset contains medical diagnostic measurements for 768 patients with significant missing values:
 
 **Original dataset**: 768 samples with 9 features
