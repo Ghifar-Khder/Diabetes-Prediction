@@ -201,16 +201,6 @@ The meta-learner outperformed the best base model (ANN) by:
 - −6.82% in recall
 - **+3.12% in F1-score**
 
-## Key Features
-- **Advanced Missing Value Handling**: Specialized imputation techniques for datasets with significant missing values (20-35% missingness)
-- **Robust Preprocessing Pipeline**: Comprehensive data cleaning, outlier removal, and feature engineering
-- **Complete Reproducibility**: Fixed random seeds throughout the pipeline for consistent results
-- **Sophisticated Imputation Models**: Gradient Boosting models specifically tuned for SkinThickness and Insulin imputation
-- **Ensemble Diversity**: Combination of five different model architectures for robust predictions
-- **Fuzzy Clustering Integration**: Enhanced feature space representation through FCM analysis
-- **Two-Phase Training**: Weighted refinement approach for optimal meta-learner performance
-- **Comprehensive Hyperparameter Optimization**: Extensive search for each base model
-- **User-Friendly Interface**: Interactive interface for making predictions on new data with real-time results
 
 ## Contact
 For questions or suggestions, please contact:
