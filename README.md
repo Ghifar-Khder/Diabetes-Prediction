@@ -195,11 +195,11 @@ The meta-learner demonstrates superior performance compared to individual base m
 | LinearSVM | 74.07% | 60.98% | 56.82% | 58.82% |
 | **Meta-Learner** | **77.04%** | **63.27%** | **70.45%** | **66.67%** |
 
-The meta-learner outperformed the best base model (RSVM) by:
-- +2.22% in accuracy
-- +2.40% in precision  
-- +6.82% in recall
-- +4.44% in F1-score
+The meta-learner outperformed the best base model (ANN) by:
+- +5.93% in accuracy
+- +9.30% in precision  
+- −6.82% in recall
+- **+3.12% in F1-score**
 
 ## Key Features
 - **Advanced Missing Value Handling**: Specialized imputation techniques for datasets with significant missing values (20-35% missingness)
