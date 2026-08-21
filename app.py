@@ -210,42 +210,26 @@ def verdict_banner(proba: float):
 
 
 def base_model_chart(base_proba_row: pd.Series):
-    svm_models = ["RSVM", "LinearSVM"]
+    # Filter out SVM models for visualization display
+    visible_models = ["ANN", "KNN", "LightGBM"]
+    filtered_series = base_proba_row[visible_models]
 
-    # Convert values: threshold SVMs at 0.5 to 0 or 1, keep raw float probabilities for others
-    display_values = [
-        int(val > 0.5) if model in svm_models else val
-        for model, val in base_proba_row.items()
-    ]
-
-    # Format text labels: integer 0/1 for SVMs, percentage for others
-    text_labels = [
-        f"{int(val)}" if model in svm_models else f"{val:.1%}"
-        for model, val in base_proba_row.items()
-    ]
-
-    colors = ["#e74c3c" if v > 0.5 else "#2ecc71" for v in base_proba_row.values]
-
+    colors = ["#e74c3c" if v > 0.5 else "#2ecc71" for v in filtered_series.values]
     fig = go.Figure(
         go.Bar(
-            x=display_values,
-            y=base_proba_row.index,
+            x=filtered_series.values,
+            y=filtered_series.index,
             orientation="h",
             marker_color=colors,
-            text=text_labels,
+            text=[f"{v:.1%}" for v in filtered_series.values],
             textposition="outside",
         )
     )
     fig.add_vline(x=0.5, line_dash="dash", line_color="gray")
     fig.update_layout(
-        xaxis=dict(
-            range=[0, 1.15],
-            tickvals=[0, 0.5, 1],
-            ticktext=["0 (Non-Diabetic)", "0.5", "1 (Diabetic)"],
-            title="Model Output (0/1 for SVMs · Probability for ANN, KNN, LightGBM)",
-        ),
+        xaxis=dict(range=[0, 1.15], tickformat=".0%", title="Predicted probability of diabetes"),
         yaxis_title=None,
-        height=260,
+        height=200,
         margin=dict(l=10, r=10, t=10, b=30),
     )
     return fig
