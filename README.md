@@ -150,6 +150,7 @@ The application features a user-friendly graphical interface that allows for:
 The interface provides an intuitive way to make predictions using either individual patient data or batch processing of CSV files, with clear visual feedback and comprehensive results display.
 
 ## Methodology
+### ![Full Diagram](figures/data-analysis/full_diagram.png)
 
 ### Advanced Data Preprocessing
 1. **Missing Value Identification**: Comprehensive analysis revealing significant missing values in SkinThickness (≈20%) and Insulin (≈35%)
@@ -160,7 +161,6 @@ The interface provides an intuitive way to make predictions using either individ
    - SkinThickness imputation (143 missing in train, 49 in test)
    - Insulin imputation (258 missing in train, 74 in test)
 6. **Feature Scaling**: MinMax scaling applied to all features for model consistency
-![Full Diagram](figures/data-analysis/full_diagram.png)
 ### Base Models
 Five diverse base models were trained to handle the complex missing value patterns:
 1. Artificial Neural Network (ANN)
