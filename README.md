@@ -159,9 +159,11 @@ The interface provides an intuitive way to make predictions using either individ
 ### ![Missing values](figures/data-analysis/missing-befor.png)
 
 2. **Critical Feature Preservation**: Removal of cases with missing values in essential features (Age, Glucose, BloodPressure, BMI)
+
 3. **Feature Selection**: Removal of DiabetesPedigreeFunction based on correlation analysis
-4. **Outlier Detection**: IQR method to remove outliers from both training and test sets
 ### ![Correlation matrix](figures/data-analysis/correlation_matrix.png)
+4. **Outlier Detection**: IQR method to remove outliers from both training and test sets
+### ![Missing values after initital cleaning](figures/data-analysis/missing_values_analysis.png)
 
 5. **Smart Imputation**: Gradient Boosting models specifically tuned for:
    - SkinThickness imputation (143 missing in train, 49 in test)
