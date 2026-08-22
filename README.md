@@ -158,7 +158,7 @@ The interface provides an intuitive way to make predictions using either individ
 1. **Missing Value Identification**: Comprehensive analysis revealing significant missing values in SkinThickness (≈28%) and Insulin (≈48%)
 ### ![Missing values](figures/data-analysis/missing-befor.png)
 
-2. **Critical Feature Preservation**: Removal of cases with missing values in essential features (Age, Glucose, BloodPressure, BMI)
+2. **Data Cleaning**: Removal of cases with missing values in essential features (Age, Glucose, BloodPressure, BMI)
 
 3. **Feature Selection**: Removal of DiabetesPedigreeFunction based on correlation analysis
 ### ![Correlation matrix](figures/data-analysis/correlation_matrix.png)
