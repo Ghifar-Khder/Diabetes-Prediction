@@ -163,9 +163,12 @@ The interface provides an intuitive way to make predictions using either individ
 3. **Outlier Detection**: IQR method to remove outliers from both training and test sets
 
 4. **Feature Selection**: Removal of DiabetesPedigreeFunction based on correlation analysis
-### ![Correlation matrix](figures/data-analysis/correlation_matrix.png)
 
 ### ![Missing values after initital cleaning](figures/data-analysis/missing_values_analysis.png)
+
+
+### ![Correlation matrix](figures/data-analysis/correlation_matrix.png)
+
 
 5. **Smart Imputation**: Gradient Boosting models specifically tuned for:
    - SkinThickness imputation (143 missing in train, 49 in test)
