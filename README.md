@@ -160,15 +160,18 @@ The interface provides an intuitive way to make predictions using either individ
 
 2. **Data Cleaning**: Removal of cases with missing values in essential features (Age, Glucose, BloodPressure, BMI)
 
-3. **Feature Selection**: Removal of DiabetesPedigreeFunction based on correlation analysis
+3. **Outlier Detection**: IQR method to remove outliers from both training and test sets
+
+4. **Feature Selection**: Removal of DiabetesPedigreeFunction based on correlation analysis
 ### ![Correlation matrix](figures/data-analysis/correlation_matrix.png)
-4. **Outlier Detection**: IQR method to remove outliers from both training and test sets
+
 ### ![Missing values after initital cleaning](figures/data-analysis/missing_values_analysis.png)
 
 5. **Smart Imputation**: Gradient Boosting models specifically tuned for:
    - SkinThickness imputation (143 missing in train, 49 in test)
    - Insulin imputation (258 missing in train, 74 in test)
 6. **Feature Scaling**: MinMax scaling applied to all features for model consistency
+
 ### Base Models
 Five diverse base models were trained to handle the complex missing value patterns:
 1. Artificial Neural Network (ANN)
