@@ -225,3 +225,7 @@ The meta-learner outperformed the best base model (ANN) by:
 * **Email:** ghifarkhder2000@gmail.com
 * **LinkedIn:** [www.linkedin.com/in/ghifar-khder](https://www.linkedin.com/in/ghifar-khder)
 * **Repository:** [Ghifar-Khder/Diabetes-Detection](https://github.com/Ghifar-Khder/Diabetes-Detection)
+
+## Author
+
+[Ghifar Khder](https://ghifar-khder.github.io/portfolio/)
